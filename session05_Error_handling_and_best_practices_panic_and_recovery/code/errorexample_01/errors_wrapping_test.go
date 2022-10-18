@@ -20,7 +20,7 @@ func B() error {
 
 func C() error {
 	if err := B(); err != nil {
-		return errors.WithMessage(err, "unable to do B()")
+		return errors.WithMessage(err, "unable to do C()")
 	}
 	return nil
 }

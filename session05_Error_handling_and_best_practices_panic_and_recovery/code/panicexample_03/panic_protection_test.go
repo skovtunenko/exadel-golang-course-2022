@@ -21,9 +21,9 @@ func panicingFn() {
 func protect(fn func()) {
 	defer func() {
 		log.Println("this will be printed normally, even if there is a panic / or no panic")
-		if err := recover(); err != nil {
+		if x := recover(); x != nil {
 			// This is how to print stacktrace from the panic:
-			log.Printf("Runtime panic, recovered from: %v; stack: %s", err, debug.Stack())
+			log.Printf("Runtime panic, recovered from: %v; stack: %s", x, debug.Stack())
 		}
 	}()
 	log.Println("start executing fn()...")

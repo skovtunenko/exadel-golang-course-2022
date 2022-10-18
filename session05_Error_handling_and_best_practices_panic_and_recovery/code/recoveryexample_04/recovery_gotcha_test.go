@@ -13,6 +13,8 @@ func Test_recovery_gotcha(t *testing.T) {
 	defer func() {
 		doRecover() // panic is not recovered!!!
 
+		// This is a way to fix the problem (uncomment lines):
+
 		// if err := recover(); err != nil {
 		// 	t.Log("Fixed: recovered from", err)
 		// }
