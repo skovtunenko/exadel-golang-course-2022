@@ -7,16 +7,6 @@ import (
 
 var mx sync.Mutex
 
-func fnUsingDefer() {
-	fmt.Println("Preparation...")
-
-	mx.Lock()
-	defer mx.Unlock()
-	fmt.Println("Inside the critical section...")
-	// ..........
-	fmt.Println("Still inside the critical section...")
-}
-
 func fnWithoutDefer() {
 	fmt.Println("Preparation...")
 
@@ -25,6 +15,16 @@ func fnWithoutDefer() {
 	// ..........
 	fmt.Println("Still inside the critical section...")
 	mx.Unlock()
+}
+
+func fnUsingDefer() {
+	fmt.Println("Preparation...")
+
+	mx.Lock()
+	defer mx.Unlock()
+	fmt.Println("Inside the critical section...")
+	// ..........
+	fmt.Println("Still inside the critical section...")
 }
 
 func fnUsingAnonymousFnWithDefer() {
