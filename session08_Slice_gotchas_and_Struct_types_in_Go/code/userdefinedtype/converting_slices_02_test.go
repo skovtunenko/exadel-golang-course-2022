@@ -12,7 +12,7 @@ func ExampleFailedCompilation() {
 
 	var src []T1
 	_ = src
-	// var sx = ([]T2)(st1) // NOT OK, code will not compile!
+	// var sx = ([]T2)(src) // NOT OK, code will not compile!
 }
 
 func ExampleProperConversion() {
