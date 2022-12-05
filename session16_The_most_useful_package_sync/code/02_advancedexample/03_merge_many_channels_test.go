@@ -8,7 +8,7 @@ import (
 
 func merge(cs ...<-chan int) <-chan int {
 	var wg sync.WaitGroup
-	out := make(chan int)
+	out := make(chan int) // Step 1
 
 	send := func(c <-chan int) {
 		defer wg.Done()
@@ -26,7 +26,8 @@ func merge(cs ...<-chan int) <-chan int {
 		defer close(out)
 		wg.Wait()
 	}()
-	return out
+
+	return out // Step 3
 }
 
 func TestMergeTwoChannelsExample(t *testing.T) {

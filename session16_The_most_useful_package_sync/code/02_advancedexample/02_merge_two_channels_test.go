@@ -8,8 +8,9 @@ import (
 )
 
 func mergeTwo(in1 <-chan int, in2 <-chan int) <-chan int {
-	out := make(chan int)
-	go func() {
+	out := make(chan int) // step 1
+
+	go func() { // step 2
 		defer close(out)
 
 		for in1 != nil || in2 != nil {
@@ -29,7 +30,8 @@ func mergeTwo(in1 <-chan int, in2 <-chan int) <-chan int {
 			}
 		}
 	}()
-	return out
+
+	return out // step 3
 }
 
 func TestMergeTwoChannels(t *testing.T) {

@@ -1,6 +1,8 @@
 package chanexample
 
-import "testing"
+import (
+	"testing"
+)
 
 func f() int {
 	return 42

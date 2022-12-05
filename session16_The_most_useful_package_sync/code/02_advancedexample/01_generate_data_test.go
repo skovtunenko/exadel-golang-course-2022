@@ -8,14 +8,16 @@ import (
 )
 
 func asChan(nums ...int) <-chan int {
-	ch := make(chan int)
-	go func() {
+	ch := make(chan int) // step 1
+
+	go func() { // step 2
 		defer close(ch)
 		for _, val := range nums {
 			ch <- val
 		}
 	}()
-	return ch
+
+	return ch // step 3
 }
 
 func gen(nums ...int) <-chan int {
@@ -28,15 +30,20 @@ func gen(nums ...int) <-chan int {
 }
 
 func sq(in <-chan int) <-chan int {
-	out := make(chan int)
-	fn := func(val int) int { return val * val }
-	go func() {
+	out := make(chan int) // step 1
+
+	fn := func(val int) int {
+		return val * val
+	}
+
+	go func() { // step 2
 		defer close(out)
 		for val := range in {
 			out <- fn(val)
 		}
 	}()
-	return out
+
+	return out // step 3
 }
 
 // ---------------------------------------------------------------
@@ -44,11 +51,11 @@ func sq(in <-chan int) <-chan int {
 // ---------------------------------------------------------------
 
 func TestExecuteDataPipeline(t *testing.T) {
-	c := asChan(2, 3)
+	ch := asChan(2, 3)
 	// OR :
 	// c := gen(2, 3)
 
-	out := sq(c)
+	out := sq(ch)
 
 	fmt.Println(<-out) // 4
 	fmt.Println(<-out) // 9
