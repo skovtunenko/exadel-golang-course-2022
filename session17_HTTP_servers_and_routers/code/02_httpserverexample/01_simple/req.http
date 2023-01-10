@@ -1,0 +1,9 @@
+### req 1
+GET http://localhost:3000/
+
+### req 2
+POST http://localhost:3000/
+
+### dump the headers
+GET http://localhost:3000/headers
+Accept: application/json
